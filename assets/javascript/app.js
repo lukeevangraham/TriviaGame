@@ -20,6 +20,14 @@ var questions = {
         a3: "El Tepeyac",
         a4: "Santa Maria",
         a: "a1"
+    },
+    3: {
+        q: "Which nation does not border the Czech Republic?",
+        a1: "Germany",
+        a2: "Austria",
+        a3: "Switzerland",
+        a4: "Slovakia",
+        a: "a3"
     }
 }
 
@@ -28,30 +36,33 @@ function startGame() {
     // $('#main').html("");
 
     countdown = 5;
+    
+    // COUNTDOWN BEGINS
+    intervalId = setTimeout(results, 5000);
+    
+    // DISPLAY COUNTDOWN
+    down = setInterval(count, 1000);
 
+    dispQandA();
+}
+
+function dispQandA() {
     // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
     const newLine = $('<p>');
-
+    
     // CREATE AND SAVE REFERENCES TO QUESTIONS AND CHOICES FROM OBJECT
     const dispQ = $('<br> <br><p>' + questions[1].q + '</p>');
     const dispA1 = $('<p>' + questions[1].a1 + '</p>');
     const dispA2 = $('<p>' + questions[1].a2 + '</p>');
     const dispA3 = $('<p>' + questions[1].a3 + '</p>');
     const dispA4 = $('<p>' + questions[1].a4 + '</p>');
-
+    
     // APPEND THE MAIN DIV
     $('#main').append(dispQ);
     $('#main').append(dispA1);
     $('#main').append(dispA2);
     $('#main').append(dispA3);
     $('#main').append(dispA4);
-    
-    // COUNTDOWN BEGINS
-    intervalId = setTimeout(results, 5000);
-
-    // DISPLAY COUNTDOWN
-    down = setInterval(count, 1000);
-
     
 }
 
