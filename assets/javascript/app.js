@@ -3,6 +3,10 @@ var intervalId;
 var countdown
 var timeLeft
 var clockRunning = false;
+var radioValue;
+var correctCount = 0;
+var incorrectCount = 0;
+var unanswered = 0;
 
 // Variable (object) holding our questions
 var questions = {
@@ -12,7 +16,7 @@ var questions = {
         a2: "Key West",
         a3: "Hispanola",
         a4: "Santo Domingo",
-        a: "a2"
+        a: "a4"
     },
     2: {
         q: "The historic central neighborhood of Santo Domingo is called:",
@@ -61,7 +65,7 @@ function dispQandA() {
     // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
     const newLine = $('<p>');
 
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < Object.keys(questions).length + 1; i++) {
         const dispQ = $('<br> <br><p>' + questions[i].q + '<br>');
         const dispA1 = $('<input type="radio" value="a1" name="'+i+'"> ' + questions[i].a1 + '<br>');
         const dispA2 = $('<input type="radio" value="a2" name="'+i+'"> ' + questions[i].a2 + '<br>');
@@ -74,7 +78,6 @@ function dispQandA() {
         $('#main').append(dispA2);
         $('#main').append(dispA3);
         $('#main').append(dispA4);
-        
     }
     
     // // CREATE AND SAVE REFERENCES TO QUESTIONS AND CHOICES FROM OBJECT
@@ -110,13 +113,22 @@ function results() {
     $('#top').html("Game Over!");
 
 // Display what is checked
-// $("#main").html( $("input:checked").val() + " is checked!" );
-// $( "#main").html( $( "input:checked" ).val() + " is checked!" );
 
-var radioValue = $("input[name='1']:checked").val();
-console.log("You chose " + radioValue);
+radioValue = $("input[name='1']:checked").val();
 
-console.log($('input[name=1]:checked').val());
+for (let i = 1; i < Object.keys(questions).length + 1; i++) {
+    console.log("another pass")
+    radioValue = $("input[name='" + i +"']:checked").val();
+    if (radioValue === questions[i].a) {
+        correctCount++;
+        console.log("right answer");
+    } else {
+        incorrectCount++;
+        console.log("wrong answer");
+    }
+}
+
+
 
 }
 
