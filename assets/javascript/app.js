@@ -2,6 +2,7 @@
 var intervalId;
 var countdown
 var timeLeft
+var clockRunning = false;
 
 // Variable (object) holding our questions
 var questions = {
@@ -35,15 +36,25 @@ function startGame() {
     // // CLEAR THE START BUTTON
     // $('#main').html("");
 
-    countdown = 5;
+    clockRunning = true;
+
+    countdown = 10;
+    $('#top').html("Time remaining: " + countdown);
     
     // COUNTDOWN BEGINS
-    intervalId = setTimeout(results, 5000);
+    intervalId = setTimeout(results, 10000);
     
     // DISPLAY COUNTDOWN
-    down = setInterval(count, 1000);
+    if (clockRunning) {
+        down = setInterval(count, 1000);
+    }
 
     dispQandA();
+}
+
+function stop() {
+    clearInterval(down);
+    clockRunning = false;
 }
 
 function dispQandA() {
@@ -94,7 +105,9 @@ function count() {
 }
 
 function results() {
-    $('#main').html("Game Over!");
+    stop();
+    clockRunning = false;
+    $('#top').html("Game Over!");
 }
 
 // COUNTDOWN BEGINS ON CLICK BUTTON (120 SECONDS?)
