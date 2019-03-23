@@ -63,10 +63,10 @@ function dispQandA() {
 
     for (let i = 1; i < 4; i++) {
         const dispQ = $('<br> <br><p>' + questions[i].q + '<br>');
-        const dispA1 = $('<input type="radio" name="'+i+'"> ' + questions[i].a1 + '<br>');
-        const dispA2 = $('<input type="radio" name="'+i+'"> ' + questions[i].a2 + '<br>');
-        const dispA3 = $('<input type="radio" name="'+i+'"> ' + questions[i].a3 + '<br>');
-        const dispA4 = $('<input type="radio" name="'+i+'"> ' + questions[i].a4 + '<br>');
+        const dispA1 = $('<input type="radio" value="a1" name="'+i+'"> ' + questions[i].a1 + '<br>');
+        const dispA2 = $('<input type="radio" value="a2" name="'+i+'"> ' + questions[i].a2 + '<br>');
+        const dispA3 = $('<input type="radio" value="a3" name="'+i+'"> ' + questions[i].a3 + '<br>');
+        const dispA4 = $('<input type="radio" value="a4" name="'+i+'"> ' + questions[i].a4 + '<br>');
         
         // APPEND THE MAIN DIV
         $('#main').append(dispQ);
@@ -112,6 +112,9 @@ function results() {
 // Display what is checked
 // $("#main").html( $("input:checked").val() + " is checked!" );
 // $( "#main").html( $( "input:checked" ).val() + " is checked!" );
+
+var radioValue = $("input[name='1']:checked").val();
+console.log("You chose " + radioValue);
 
 console.log($('input[name=1]:checked').val());
 
