@@ -40,11 +40,11 @@ function startGame() {
 
     clockRunning = true;
 
-    countdown = 60;
+    countdown = 120;
     $('#top').html("Time remaining: " + countdown + " Seconds");
     
     // COUNTDOWN BEGINS
-    intervalId = setTimeout(results, 60000);
+    intervalId = setTimeout(results, 120000);
     
     // DISPLAY COUNTDOWN
     if (clockRunning) {
@@ -65,7 +65,7 @@ function dispQandA() {
     const newLine = $('<p>');
 
     for (let i = 1; i < Object.keys(questions).length + 1; i++) {
-        const dispQ = $('<br> <br><p>' + questions[i].q + '<br>');
+        const dispQ = $('<br> <br>' + questions[i].q + '<br>');
         const dispA1 = $('<input type="radio" value="a1" name="'+i+'"> ' + questions[i].a1 + '<br>');
         const dispA2 = $('<input type="radio" value="a2" name="'+i+'"> ' + questions[i].a2 + '<br>');
         const dispA3 = $('<input type="radio" value="a3" name="'+i+'"> ' + questions[i].a3 + '<br>');
