@@ -37,22 +37,21 @@ var questions = {
 }
 
 function startGame() {
-    // // CLEAR THE START BUTTON
-    // $('#main').html("");
 
     clockRunning = true;
 
-    countdown = 10;
-    $('#top').html("Time remaining: " + countdown);
+    countdown = 60;
+    $('#top').html("Time remaining: " + countdown + " Seconds");
     
     // COUNTDOWN BEGINS
-    intervalId = setTimeout(results, 5000);
+    intervalId = setTimeout(results, 60000);
     
     // DISPLAY COUNTDOWN
     if (clockRunning) {
         down = setInterval(count, 1000);
     }
 
+    // CALL FUNCTION TO DISPLAY QUESTIONS
     dispQandA();
 }
 
@@ -79,32 +78,18 @@ function dispQandA() {
         $('#main').append(dispA3);
         $('#main').append(dispA4);
     }
-    
-    // // CREATE AND SAVE REFERENCES TO QUESTIONS AND CHOICES FROM OBJECT
-    // const dispQ = $('<br> <br><p>' + questions[1].q + '</p>');
-    // const dispA1 = $('<p>' + questions[1].a1 + '</p>');
-    // const dispA2 = $('<p>' + questions[1].a2 + '</p>');
-    // const dispA3 = $('<p>' + questions[1].a3 + '</p>');
-    // const dispA4 = $('<p>' + questions[1].a4 + '</p>');
-    
-    // // APPEND THE MAIN DIV
-    // $('#main').append(dispQ);
-    // $('#main').append(dispA1);
-    // $('#main').append(dispA2);
-    // $('#main').append(dispA3);
-    // $('#main').append(dispA4);
-    
+
+    //DISPLAY 'DONE' BUTTON
+    $('#main').append("<br><br><button id='done'>DONE</button>");
+    $("#done").on('click', results);
 }
 
 function count() {
-    // DECREMEMT TIMELEFT BY 1
+    // DECREMEMT LEFT BY 1
     countdown--
 
-    // GET THE CURRENT TIME, PASS THAT INTO THE TIME CONVERTER FUNCTION
-    // AND SAVE THE RESULT IN A VARIABLE
-
     // SEND TIMELEFT TO DISPLAY
-    $('#top').html("Time remaining: " + countdown);
+    $('#top').html("Time remaining: " + countdown + " Seconds");
 }
 
 function results() {
@@ -112,43 +97,26 @@ function results() {
     clockRunning = false;
     $('#top').html("Game Over!");
 
-// CALCULATE ANSWERS
-radioValue = $("input[name='1']:checked").val();
+    // CALCULATE ANSWERS
+    radioValue = $("input[name='1']:checked").val();
 
-for (let i = 1; i < Object.keys(questions).length + 1; i++) {
-    console.log("another pass")
-    radioValue = $("input[name='" + i +"']:checked").val();
-    console.log("radioValue is: " + radioValue);
-    if (radioValue === questions[i].a) {
-        correctCount++;
-        console.log("right answer");
-    } else if (radioValue === undefined) {
-        unansweredCount++;
-        console.log("unchecked!");
+    for (let i = 1; i < Object.keys(questions).length + 1; i++) {
+        radioValue = $("input[name='" + i +"']:checked").val();
+        if (radioValue === questions[i].a) {
+            correctCount++;
+        } else if (radioValue === undefined) {
+            unansweredCount++;
 
-    } else {
-        incorrectCount++;
-        console.log("wrong answer");
+        } else {
+            incorrectCount++;
+        }
     }
-}
 
-//DISPLAY RESULTS
-$("#main").html("<br>Correct Answers: " + correctCount);
-$("#main").append("<br><br>Incorrect Answers: " + incorrectCount);
-$("#main").append("<br><br>Unanswered Answers: " + unansweredCount);
-
-
-
+    //DISPLAY RESULTS
+    $("#main").html("<br>Correct Answers: " + correctCount);
+    $("#main").append("<br><br>Incorrect Answers: " + incorrectCount);
+    $("#main").append("<br><br>Unanswered Answers: " + unansweredCount);
 }
 
 // COUNTDOWN BEGINS ON CLICK BUTTON (120 SECONDS?)
 $("#start").on('click', startGame);
-
-
-
-// GAME ENDS WHEN TIME RUNS OUT
-
-
-// CALCULATE NUMBER OF CORRECT AND INCORRECT ANSWERS
-
-// 
