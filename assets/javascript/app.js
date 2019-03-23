@@ -42,7 +42,7 @@ function startGame() {
     $('#top').html("Time remaining: " + countdown);
     
     // COUNTDOWN BEGINS
-    intervalId = setTimeout(results, 10000);
+    intervalId = setTimeout(results, 5000);
     
     // DISPLAY COUNTDOWN
     if (clockRunning) {
@@ -61,12 +61,12 @@ function dispQandA() {
     // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
     const newLine = $('<p>');
 
-    for (let i = 1; i < 3; i++) {
-        const dispQ = $('<br> <br><p>' + questions[i].q + '</p>');
-        const dispA1 = $('<p>' + questions[i].a1 + '</p>');
-        const dispA2 = $('<p>' + questions[i].a2 + '</p>');
-        const dispA3 = $('<p>' + questions[i].a3 + '</p>');
-        const dispA4 = $('<p>' + questions[i].a4 + '</p>');
+    for (let i = 1; i < 4; i++) {
+        const dispQ = $('<br> <br><p>' + questions[i].q + '<br>');
+        const dispA1 = $('<input type="radio" name="'+i+'"> ' + questions[i].a1 + '<br>');
+        const dispA2 = $('<input type="radio" name="'+i+'"> ' + questions[i].a2 + '<br>');
+        const dispA3 = $('<input type="radio" name="'+i+'"> ' + questions[i].a3 + '<br>');
+        const dispA4 = $('<input type="radio" name="'+i+'"> ' + questions[i].a4 + '<br>');
         
         // APPEND THE MAIN DIV
         $('#main').append(dispQ);
@@ -77,19 +77,19 @@ function dispQandA() {
         
     }
     
-    // CREATE AND SAVE REFERENCES TO QUESTIONS AND CHOICES FROM OBJECT
-    const dispQ = $('<br> <br><p>' + questions[1].q + '</p>');
-    const dispA1 = $('<p>' + questions[1].a1 + '</p>');
-    const dispA2 = $('<p>' + questions[1].a2 + '</p>');
-    const dispA3 = $('<p>' + questions[1].a3 + '</p>');
-    const dispA4 = $('<p>' + questions[1].a4 + '</p>');
+    // // CREATE AND SAVE REFERENCES TO QUESTIONS AND CHOICES FROM OBJECT
+    // const dispQ = $('<br> <br><p>' + questions[1].q + '</p>');
+    // const dispA1 = $('<p>' + questions[1].a1 + '</p>');
+    // const dispA2 = $('<p>' + questions[1].a2 + '</p>');
+    // const dispA3 = $('<p>' + questions[1].a3 + '</p>');
+    // const dispA4 = $('<p>' + questions[1].a4 + '</p>');
     
-    // APPEND THE MAIN DIV
-    $('#main').append(dispQ);
-    $('#main').append(dispA1);
-    $('#main').append(dispA2);
-    $('#main').append(dispA3);
-    $('#main').append(dispA4);
+    // // APPEND THE MAIN DIV
+    // $('#main').append(dispQ);
+    // $('#main').append(dispA1);
+    // $('#main').append(dispA2);
+    // $('#main').append(dispA3);
+    // $('#main').append(dispA4);
     
 }
 
@@ -108,6 +108,13 @@ function results() {
     stop();
     clockRunning = false;
     $('#top').html("Game Over!");
+
+// Display what is checked
+// $("#main").html( $("input:checked").val() + " is checked!" );
+// $( "#main").html( $( "input:checked" ).val() + " is checked!" );
+
+console.log($('input[name=1]:checked').val());
+
 }
 
 // COUNTDOWN BEGINS ON CLICK BUTTON (120 SECONDS?)
