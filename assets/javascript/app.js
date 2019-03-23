@@ -6,7 +6,7 @@ var clockRunning = false;
 var radioValue;
 var correctCount = 0;
 var incorrectCount = 0;
-var unanswered = 0;
+var unansweredCount = 0;
 
 // Variable (object) holding our questions
 var questions = {
@@ -118,9 +118,14 @@ radioValue = $("input[name='1']:checked").val();
 for (let i = 1; i < Object.keys(questions).length + 1; i++) {
     console.log("another pass")
     radioValue = $("input[name='" + i +"']:checked").val();
+    console.log("radioValue is: " + radioValue);
     if (radioValue === questions[i].a) {
         correctCount++;
         console.log("right answer");
+    } else if (radioValue === undefined) {
+        unansweredCount++;
+        console.log("unchecked!");
+
     } else {
         incorrectCount++;
         console.log("wrong answer");
@@ -130,6 +135,7 @@ for (let i = 1; i < Object.keys(questions).length + 1; i++) {
 //DISPLAY RESULTS
 $("#main").html("<br>Correct Answers: " + correctCount);
 $("#main").append("<br><br>Incorrect Answers: " + incorrectCount);
+$("#main").append("<br><br>Unanswered Answers: " + unansweredCount);
 
 
 
