@@ -112,8 +112,7 @@ function results() {
     clockRunning = false;
     $('#top').html("Game Over!");
 
-// Display what is checked
-
+// CALCULATE ANSWERS
 radioValue = $("input[name='1']:checked").val();
 
 for (let i = 1; i < Object.keys(questions).length + 1; i++) {
@@ -127,6 +126,10 @@ for (let i = 1; i < Object.keys(questions).length + 1; i++) {
         console.log("wrong answer");
     }
 }
+
+//DISPLAY RESULTS
+$("#main").html("<br>Correct Answers: " + correctCount);
+$("#main").append("<br><br>Incorrect Answers: " + incorrectCount);
 
 
 
