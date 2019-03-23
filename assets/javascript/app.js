@@ -49,6 +49,22 @@ function startGame() {
 function dispQandA() {
     // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
     const newLine = $('<p>');
+
+    for (let i = 1; i < 3; i++) {
+        const dispQ = $('<br> <br><p>' + questions[i].q + '</p>');
+        const dispA1 = $('<p>' + questions[i].a1 + '</p>');
+        const dispA2 = $('<p>' + questions[i].a2 + '</p>');
+        const dispA3 = $('<p>' + questions[i].a3 + '</p>');
+        const dispA4 = $('<p>' + questions[i].a4 + '</p>');
+        
+        // APPEND THE MAIN DIV
+        $('#main').append(dispQ);
+        $('#main').append(dispA1);
+        $('#main').append(dispA2);
+        $('#main').append(dispA3);
+        $('#main').append(dispA4);
+        
+    }
     
     // CREATE AND SAVE REFERENCES TO QUESTIONS AND CHOICES FROM OBJECT
     const dispQ = $('<br> <br><p>' + questions[1].q + '</p>');
