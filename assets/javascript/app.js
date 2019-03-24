@@ -67,11 +67,11 @@ var questions = {
         a: "a4"
     },
     8: {
-        q: "Which was a powerful family associated with Vienna?",
-        a1: "Hapsburg",
-        a2: "Medici",
-        a3: "Romanov",
-        a4: "Rosevelt",
+        q: "Which powerful family is associated with Vienna?",
+        a1: "Hapsburgs",
+        a2: "Medicis",
+        a3: "Romanovs",
+        a4: "Rosevelts",
         a: "a1"
     }
 }
