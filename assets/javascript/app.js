@@ -33,6 +33,46 @@ var questions = {
         a3: "Switzerland",
         a4: "Slovakia",
         a: "a3"
+    },
+    4: {
+        q: "Budapest is:",
+        a1: "a city in Hungary",
+        a2: "a capital city",
+        a3: "named after two towns on opposite sides of a river",
+        a4: "all of the above",
+        a: "a4"
+    },
+    5: {
+        q: "Which is a famous landmark in Rome?",
+        a1: "Ponte Vecchio",
+        a2: "Spanish Steps",
+        a3: "Eiffel Tower",
+        a4: "Rialto Bridge",
+        a: "a2"
+    },
+    6: {
+        q: "The world's most visited coutry by tourists is:",
+        a1: "United States",
+        a2: "France",
+        a3: "United Kingdom",
+        a4: "China",
+        a: "a2"
+    },
+    7: {
+        q: "Which is one of the 'A B C Islands' in the Carribean?",
+        a1: "Madagascar",
+        a2: "Corsica",
+        a3: "Antigua",
+        a4: "Bonaire",
+        a: "a4"
+    },
+    8: {
+        q: "Which was a powerful family associated with Vienna?",
+        a1: "Hapsburg",
+        a2: "Medici",
+        a3: "Romanov",
+        a4: "Rosevelt",
+        a: "a1"
     }
 }
 
@@ -65,7 +105,7 @@ function dispQandA() {
     const newLine = $('<p>');
 
     for (let i = 1; i < Object.keys(questions).length + 1; i++) {
-        const dispQ = $('<br> <br>' + questions[i].q + '<br>');
+        const dispQ = $('<br><br>' + questions[i].q + '<br>');
         const dispA1 = $('<input type="radio" value="a1" name="'+i+'"> ' + questions[i].a1 + '<br>');
         const dispA2 = $('<input type="radio" value="a2" name="'+i+'"> ' + questions[i].a2 + '<br>');
         const dispA3 = $('<input type="radio" value="a3" name="'+i+'"> ' + questions[i].a3 + '<br>');
@@ -80,7 +120,7 @@ function dispQandA() {
     }
 
     //DISPLAY 'DONE' BUTTON
-    $('#main').append("<br><br><button id='done'>DONE</button>");
+    $('#main').append("<br><br><button id='done'>DONE</button><br><br>");
     $("#done").on('click', results);
 }
 
