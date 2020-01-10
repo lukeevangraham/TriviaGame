@@ -80,11 +80,11 @@ function startGame() {
 
     clockRunning = true;
 
-    countdown = 120;
+    countdown = 30;
     $('#top').html("Time remaining: " + countdown + " Seconds");
     
     // COUNTDOWN BEGINS
-    intervalId = setTimeout(results, 120000);
+    intervalId = setTimeout(results, 30000);
     
     // DISPLAY COUNTDOWN
     if (clockRunning) {
