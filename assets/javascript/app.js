@@ -104,14 +104,21 @@ function stop() {
 function dispQandA() {
     // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
     const newLine = $('<p>');
-    console.log("LOOK HERE: ", questions)
 
     // for (let i = 1; i < Object.keys(questions).length + 1; i++) {
+        // const dispQ = $('<br><br>' + questions[questionsDisplayed].q + '<br>');
+        // const dispA1 = $('<button value="a1" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a1 + '<br>');
+        // const dispA2 = $('<button value="a2" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a2 + '<br>');
+        // const dispA3 = $('<button value="a3" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a3 + '<br>');
+        // const dispA4 = $('<button value="a4" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a4 + '<br>');
+        
+        
+        
         const dispQ = $('<br><br>' + questions[questionsDisplayed].q + '<br>');
-        const dispA1 = $('<input type="radio" value="a1" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a1 + '<br>');
-        const dispA2 = $('<input type="radio" value="a2" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a2 + '<br>');
-        const dispA3 = $('<input type="radio" value="a3" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a3 + '<br>');
-        const dispA4 = $('<input type="radio" value="a4" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a4 + '<br>');
+        const dispA1 = $('<span onclick="questionReview(`a1`)"> ' + questions[questionsDisplayed].a1 + '<br>');
+        const dispA2 = $('<span onclick="questionReview(`a2`)"> ' + questions[questionsDisplayed].a2 + '<br>');
+        const dispA3 = $('<span onclick="questionReview(`a3`)"> ' + questions[questionsDisplayed].a3 + '<br>');
+        const dispA4 = $('<span onclick="questionReview(`a4`)"> ' + questions[questionsDisplayed].a4 + '<br>');
         
 
         // APPEND THE MAIN DIV
@@ -125,6 +132,7 @@ function dispQandA() {
     //DISPLAY 'DONE' BUTTON
     $('#main').append("<br><br><button id='done'>DONE</button><br><br>");
     $("#done").on('click', results);
+
 }
 
 function count() {
@@ -133,6 +141,11 @@ function count() {
 
     // SEND TIMELEFT TO DISPLAY
     $('#top').html("Time remaining: " + countdown + " Seconds");
+}
+
+function questionReview(answer) {
+    console.log("ANSWER: ", answer)
+    answer === questions[questionsDisplayed].a ? console.log("Correct!") : console.log("Incorrect!")
 }
 
 function results() {
