@@ -7,6 +7,7 @@ var radioValue;
 var correctCount = 0;
 var incorrectCount = 0;
 var unansweredCount = 0;
+var questionsDisplayed = 1;
 
 // Variable (object) holding our questions
 var questions = {
@@ -103,21 +104,23 @@ function stop() {
 function dispQandA() {
     // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
     const newLine = $('<p>');
+    console.log("LOOK HERE: ", questions)
 
-    for (let i = 1; i < Object.keys(questions).length + 1; i++) {
-        const dispQ = $('<br><br>' + questions[i].q + '<br>');
-        const dispA1 = $('<input type="radio" value="a1" name="'+i+'"> ' + questions[i].a1 + '<br>');
-        const dispA2 = $('<input type="radio" value="a2" name="'+i+'"> ' + questions[i].a2 + '<br>');
-        const dispA3 = $('<input type="radio" value="a3" name="'+i+'"> ' + questions[i].a3 + '<br>');
-        const dispA4 = $('<input type="radio" value="a4" name="'+i+'"> ' + questions[i].a4 + '<br>');
+    // for (let i = 1; i < Object.keys(questions).length + 1; i++) {
+        const dispQ = $('<br><br>' + questions[questionsDisplayed].q + '<br>');
+        const dispA1 = $('<input type="radio" value="a1" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a1 + '<br>');
+        const dispA2 = $('<input type="radio" value="a2" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a2 + '<br>');
+        const dispA3 = $('<input type="radio" value="a3" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a3 + '<br>');
+        const dispA4 = $('<input type="radio" value="a4" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a4 + '<br>');
         
+
         // APPEND THE MAIN DIV
         $('#main').append(dispQ);
         $('#main').append(dispA1);
         $('#main').append(dispA2);
         $('#main').append(dispA3);
         $('#main').append(dispA4);
-    }
+    // }
 
     //DISPLAY 'DONE' BUTTON
     $('#main').append("<br><br><button id='done'>DONE</button><br><br>");
@@ -158,5 +161,5 @@ function results() {
     $("#main").append("<br><br>Unanswered Answers: " + unansweredCount);
 }
 
-// COUNTDOWN BEGINS ON CLICK BUTTON (120 SECONDS?)
+// COUNTDOWN BEGINS ON CLICK BUTTON (30 SECONDS?)
 $("#start").on('click', startGame);
