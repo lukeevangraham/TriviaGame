@@ -77,9 +77,9 @@ var questions = {
   }
 };
 
-function startCountdown(increment) {
-  setTimeout(results, increment);
-}
+// function startCountdown(increment) {
+//   setTimeout(results, increment);
+// }
 
 function startGame() {
   clearTimeout(intervalId);
@@ -89,7 +89,7 @@ function startGame() {
   $("#top").html("Time remaining: " + questionCountdown + " Seconds");
 
   // COUNTDOWN BEGINS
-  intervalId = setTimeout(results, 30000);
+  intervalId = setTimeout(questionReview, 30000);
 
   // DISPLAY COUNTDOWN
   if (clockRunning) {
@@ -109,13 +109,6 @@ function dispQandA() {
   console.log("Question number", questionsDisplayed);
   // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
   const newLine = $("<p>");
-
-  // for (let i = 1; i < Object.keys(questions).length + 1; i++) {
-  // const dispQ = $('<br><br>' + questions[questionsDisplayed].q + '<br>');
-  // const dispA1 = $('<button value="a1" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a1 + '<br>');
-  // const dispA2 = $('<button value="a2" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a2 + '<br>');
-  // const dispA3 = $('<button value="a3" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a3 + '<br>');
-  // const dispA4 = $('<button value="a4" name="'+questionsDisplayed+'"> ' + questions[questionsDisplayed].a4 + '<br>');
 
   const dispQ = $("<br><br>" + questions[questionsDisplayed].q + "<br>");
   const dispA1 = $(
@@ -161,6 +154,7 @@ function count() {
 }
 
 function questionReview(guess) {
+  console.log("GUESS: ", guess)
   clearTimeout(intervalId);
 
   intervalId = setTimeout(results, 5000);
@@ -170,9 +164,13 @@ function questionReview(guess) {
   //   clockRunning = false;
 
   if (guess === questions[questionsDisplayed].a) {
-    console.log("Correct!");
+    correctCount++;
+    console.log("Correct!", correctCount);
     $("#main").html(`<br><span>Correct!</span>`);
+  } else if (guess === undefined) {
+    unansweredCount++;
   } else {
+    incorrectCount++;
     console.log("Incorrect!");
     $("#main").html(
       `<br><span>Nope!</span><br><br><p>The correct answer was: ` +
@@ -193,20 +191,6 @@ function results() {
     stop();
     clockRunning = false;
     $("#top").html("Game Over!");
-
-    // CALCULATE ANSWERS
-    radioValue = $("input[name='1']:checked").val();
-
-    for (let i = 1; i < Object.keys(questions).length + 1; i++) {
-      radioValue = $("input[name='" + i + "']:checked").val();
-      if (radioValue === questions[i].a) {
-        correctCount++;
-      } else if (radioValue === undefined) {
-        unansweredCount++;
-      } else {
-        incorrectCount++;
-      }
-    }
 
     //DISPLAY RESULTS
     $("#main").html("<br>Correct Answers: " + correctCount);
