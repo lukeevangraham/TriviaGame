@@ -39,3 +39,7 @@ body {
 .question {
     margin-bottom: -2vh;
 }
+
+.shaded-box {
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.75), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
