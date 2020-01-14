@@ -17,7 +17,8 @@ var questions = {
     a2: "Key West",
     a3: "Hispanola",
     a4: "Santo Domingo",
-    a: "a4"
+    a: "a4",
+    pic: "./assets/images/santodomingo.jpg"
   },
   2: {
     q: "The historic central neighborhood of Santo Domingo is called:",
@@ -25,7 +26,8 @@ var questions = {
     a2: "Las Ramblas",
     a3: "El Tepeyac",
     a4: "Santa Maria",
-    a: "a1"
+    a: "a1",
+    pic: "./assets/images/zona_colonial.jpg"
   },
   3: {
     q: "Which nation does not border the Czech Republic?",
@@ -33,7 +35,8 @@ var questions = {
     a2: "Austria",
     a3: "Switzerland",
     a4: "Slovakia",
-    a: "a3"
+    a: "a3",
+    pic: "./assets/images/czech-republic-map.jpg"
   },
   4: {
     q: "Budapest is:",
@@ -41,7 +44,8 @@ var questions = {
     a2: "a capital city",
     a3: "named after two towns on opposite sides of a river",
     a4: "all of the above",
-    a: "a4"
+    a: "a4",
+    pic: "./assets/images/budapest.jpg"
   },
   5: {
     q: "Which is a famous landmark in Rome?",
@@ -49,7 +53,8 @@ var questions = {
     a2: "Spanish Steps",
     a3: "Eiffel Tower",
     a4: "Rialto Bridge",
-    a: "a2"
+    a: "a2",
+    pic: "./assets/images/spanish-steps.jpg"
   },
   6: {
     q: "The world's most visited coutry by tourists is:",
@@ -57,7 +62,8 @@ var questions = {
     a2: "France",
     a3: "United Kingdom",
     a4: "China",
-    a: "a2"
+    a: "a2",
+    pic: "./assets/images/france.jpg"
   },
   7: {
     q: "Which is one of the 'A B C Islands' in the Carribean?",
@@ -65,7 +71,8 @@ var questions = {
     a2: "Corsica",
     a3: "Antigua",
     a4: "Bonaire",
-    a: "a4"
+    a: "a4",
+    pic: "./assets/images/bonaire.jpg"
   },
   8: {
     q: "Which powerful family is associated with Vienna?",
@@ -73,28 +80,25 @@ var questions = {
     a2: "Medicis",
     a3: "Romanovs",
     a4: "Rosevelts",
-    a: "a1"
+    a: "a1",
+    pic: "./assets/images/vienna.jpg"
   }
 };
-
-// function startCountdown(increment) {
-//   setTimeout(results, increment);
-// }
 
 function startGame() {
   clearTimeout(intervalId);
   clockRunning = true;
 
   questionCountdown = 30;
-  $("#top").html("Time remaining: " + questionCountdown + " Seconds");
-
-  // COUNTDOWN BEGINS
-  intervalId = setTimeout(questionReview, 30000);
+  $("#top").html("<span class='xLargeFont'>Time remaining: " + questionCountdown + " Seconds</span>");
 
   // DISPLAY COUNTDOWN
   if (clockRunning) {
     down = setInterval(count, 1000);
   }
+
+  // COUNTDOWN BEGINS
+  intervalId = setTimeout(questionReview, 30000);
 
   // CALL FUNCTION TO DISPLAY QUESTIONS
   dispQandA();
@@ -106,28 +110,31 @@ function stop() {
 }
 
 function dispQandA() {
-  console.log("Question number", questionsDisplayed);
   // CREATE AND SAVE A REFERENCE TO NEW <P> FOR QUESTION
   const newLine = $("<p>");
 
-  const dispQ = $("<br><br>" + questions[questionsDisplayed].q + "<br>");
+  const dispQ = $(
+    "<br><p class='xLargeFont question'>" +
+      questions[questionsDisplayed].q +
+      "</p><br>"
+  );
   const dispA1 = $(
-    '<span onclick="questionReview(`a1`)"> ' +
+    '<button class="btn-block btn-light" onclick="questionReview(`a1`)"> ' +
       questions[questionsDisplayed].a1 +
       "<br>"
   );
   const dispA2 = $(
-    '<span onclick="questionReview(`a2`)"> ' +
+    '<button class="btn-block btn-light" onclick="questionReview(`a2`)"> ' +
       questions[questionsDisplayed].a2 +
       "<br>"
   );
   const dispA3 = $(
-    '<span onclick="questionReview(`a3`)"> ' +
+    '<button class="btn-block btn-light" onclick="questionReview(`a3`)"> ' +
       questions[questionsDisplayed].a3 +
       "<br>"
   );
   const dispA4 = $(
-    '<span onclick="questionReview(`a4`)"> ' +
+    '<button class="btn-block btn-light" onclick="questionReview(`a4`)"> ' +
       questions[questionsDisplayed].a4 +
       "<br>"
   );
@@ -139,10 +146,6 @@ function dispQandA() {
   $("#main").append(dispA3);
   $("#main").append(dispA4);
   // }
-
-  //DISPLAY 'DONE' BUTTON
-  $("#main").append("<br><br><button id='done'>DONE</button><br><br>");
-  $("#done").on("click", results);
 }
 
 function count() {
@@ -150,11 +153,10 @@ function count() {
   questionCountdown--;
 
   // SEND TIMELEFT TO DISPLAY
-  $("#top").html("Time remaining: " + questionCountdown + " Seconds");
+  $("#top").html("<span class='xLargeFont'>Time remaining: " + questionCountdown + " Seconds</span>");
 }
 
 function questionReview(guess) {
-  console.log("GUESS: ", guess)
   clearTimeout(intervalId);
 
   intervalId = setTimeout(results, 5000);
@@ -165,17 +167,21 @@ function questionReview(guess) {
 
   if (guess === questions[questionsDisplayed].a) {
     correctCount++;
-    console.log("Correct!", correctCount);
-    $("#main").html(`<br><span>Correct!</span>`);
+    console.log(questions[questionsDisplayed].pic)
+    $("#main").html(`<br><span>Correct!</span><br><img class='photo' src="` + questions[questionsDisplayed].pic + `" alt="">`);
   } else if (guess === undefined) {
     unansweredCount++;
+    $("#main").html(
+      `<br><span>Out of Time!</span><br><br><p>The correct answer was: ` +
+        questions[questionsDisplayed][correctAnswer] +
+        `</p><img class='photo' src="` + questions[questionsDisplayed].pic + `" alt="">`
+    );
   } else {
     incorrectCount++;
-    console.log("Incorrect!");
     $("#main").html(
       `<br><span>Nope!</span><br><br><p>The correct answer was: ` +
         questions[questionsDisplayed][correctAnswer] +
-        `</p>`
+        `</p><img class='photo' src="` + questions[questionsDisplayed].pic + `" alt="">`
     );
   }
 }

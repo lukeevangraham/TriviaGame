@@ -10,3 +10,26 @@ body {
     /* background-color: rgba(100, 100, 100, .5); */
     background-color: #c1b0a0;
 }
+
+.btn-block {
+    /* display: none !important; */
+    background-color: rgba(1, 1, 1, 0) !important;
+    border: none !important;
+    display: block;
+    padding: 8px 0px;
+    font-size: large;
+}
+
+.btn-block:hover {
+    background-color: #7e8d6e !important;
+    padding: 6px 0px;
+    border: 2px solid black !important
+}
+
+.xLargeFont {
+    font-size: x-large;
+}
+
+.question {
+    margin-bottom: -2vh;
+}
