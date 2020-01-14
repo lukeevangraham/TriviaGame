@@ -85,12 +85,25 @@ var questions = {
   }
 };
 
+function resetGame() {
+  clearInterval(down);
+  correctCount = 0;
+  incorrectCount = 0;
+  unansweredCount = 0;
+  questionsDisplayed = 1;
+  startGame();
+}
+
 function startGame() {
   clearTimeout(intervalId);
   clockRunning = true;
 
   questionCountdown = 30;
-  $("#top").html("<span class='xLargeFont'>Time remaining: " + questionCountdown + " Seconds</span>");
+  $("#top").html(
+    "<span class='xLargeFont'>Time remaining: " +
+      questionCountdown +
+      " Seconds</span>"
+  );
 
   // DISPLAY COUNTDOWN
   if (clockRunning) {
@@ -153,7 +166,11 @@ function count() {
   questionCountdown--;
 
   // SEND TIMELEFT TO DISPLAY
-  $("#top").html("<span class='xLargeFont'>Time remaining: " + questionCountdown + " Seconds</span>");
+  $("#top").html(
+    "<span class='xLargeFont'>Time remaining: " +
+      questionCountdown +
+      " Seconds</span>"
+  );
 }
 
 function questionReview(guess) {
@@ -167,21 +184,28 @@ function questionReview(guess) {
 
   if (guess === questions[questionsDisplayed].a) {
     correctCount++;
-    console.log(questions[questionsDisplayed].pic)
-    $("#main").html(`<br><span>Correct!</span><br><img class='photo' src="` + questions[questionsDisplayed].pic + `" alt="">`);
+    $("#main").html(
+      `<br><p class="xLargeFont">Correct!</p><img class='photo' src="` +
+        questions[questionsDisplayed].pic +
+        `" alt="">`
+    );
   } else if (guess === undefined) {
     unansweredCount++;
     $("#main").html(
       `<br><span>Out of Time!</span><br><br><p>The correct answer was: ` +
         questions[questionsDisplayed][correctAnswer] +
-        `</p><img class='photo' src="` + questions[questionsDisplayed].pic + `" alt="">`
+        `</p><img class='photo' src="` +
+        questions[questionsDisplayed].pic +
+        `" alt="">`
     );
   } else {
     incorrectCount++;
     $("#main").html(
       `<br><span>Nope!</span><br><br><p>The correct answer was: ` +
         questions[questionsDisplayed][correctAnswer] +
-        `</p><img class='photo' src="` + questions[questionsDisplayed].pic + `" alt="">`
+        `</p><img class='photo' src="` +
+        questions[questionsDisplayed].pic +
+        `" alt="">`
     );
   }
 }
@@ -196,14 +220,17 @@ function results() {
   } else {
     stop();
     clockRunning = false;
-    $("#top").html("Game Over!");
+    $("#top").html("<span class='xLargeFont'>Game Over!");
 
     //DISPLAY RESULTS
     $("#main").html("<br>Correct Answers: " + correctCount);
     $("#main").append("<br><br>Incorrect Answers: " + incorrectCount);
     $("#main").append("<br><br>Unanswered Answers: " + unansweredCount);
+    $("#main").append('<br><br><button class="btn-block btn-light xLargeFont" id="resetGame">Start Over?</button>');
+    $("#resetGame").on("click", resetGame);
   }
 }
 
 // COUNTDOWN BEGINS ON CLICK BUTTON (30 SECONDS?)
 $("#start").on("click", startGame);
+$("#resetGame").on("click", resetGame);
