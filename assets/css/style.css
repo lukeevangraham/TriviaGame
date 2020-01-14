@@ -20,6 +20,12 @@ body {
     font-size: large;
 }
 
+.btn-static {
+    background-color: #97a08e !important;
+    padding: 6px 0px;
+    border: 2px solid black !important
+}
+
 .btn-block:hover {
     background-color: #7e8d6e !important;
     padding: 6px 0px;
